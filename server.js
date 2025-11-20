@@ -3,9 +3,13 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 import authRoutes from "./routes/authRoute.js"
+import swaggerUi from "swagger-ui-express";
+import { specs } from "./swagger/swaggerOptions.js";
 dotenv.config();
 
 const app = express();
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+
 app.use(express.json());
 app.use(cors());
 
